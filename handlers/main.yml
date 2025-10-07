@@ -1,6 +1,12 @@
 ---
 # handlers file for ansible-telegraf
 
+- name: "Write secrets"
+  command: telegraf secrets set {{ item.store_id }} {{ item.name }} {{ item.value }}
+  become: true
+  become_user: telegraf
+  loop: "{{ telegraf_secrets }}"
+
 - name: "Restart Telegraf"
   service:
     name: telegraf

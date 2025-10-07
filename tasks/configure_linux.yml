@@ -46,6 +46,7 @@
   when:
     - telegraf_agent_version is version('0.10.0', '>=')
   notify:
+    - Write secrets
     - Restart Telegraf
     - Restart Telegraf container
 
